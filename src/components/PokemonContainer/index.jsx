@@ -20,9 +20,20 @@ function ContainerPokemon() {
         setPokemons(pokemons => pokemons.filter(item => item.data.id !== card))
     }
 
+    const atualizaCard = (id, card) => (event) => {
+        let newArr = pokemons.map((item, i) => {
+            if (id === i.data.id) {
+              return { ...pokemons, [card]: event.target.value };
+            } else {
+              return item;
+            }
+        });
+        setPokemons(newArr);
+    }
+
     const pokemon = pokemons.map(poke => (
         <div>
-            <PokemonCard key={poke.data.id} id={poke.data.id} name={poke.data.name} image={poke.data.sprites.front_shiny} remover={removeCard} />
+            <PokemonCard key={poke.data.id} id={poke.data.id} name={poke.data.name} image={poke.data.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
         </div>
     ));
     
