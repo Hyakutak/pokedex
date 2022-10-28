@@ -6,7 +6,7 @@ function Navbar({ filter, addCard }) {
             <form>
                 <input type="text" onChange={(evt) => filter(evt.target.value)}/>
             </form>
-            <AddPokemon add={addCard} />
+            <AddPokemon addTeste={addCard} />
         </div>
     );
 }

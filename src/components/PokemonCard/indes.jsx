@@ -2,7 +2,7 @@ import { useEffect, useState  } from 'react';
 
 function PokemonCard({ name, image, id, remover, atualizar } ) {
     const [cardPokemon, setcardPokemon] = useState({edit: false});
-    const [cardName, setCardName] = useState({nameCard: name});
+    const [cardName, setCardName] = useState(name);
 
     const removerCard = () => {
         remover(id);
@@ -14,12 +14,12 @@ function PokemonCard({ name, image, id, remover, atualizar } ) {
     
     const atualizaCard = (evt) => {
         evt.preventDefault();
-        atualizar(id, cardName.nameCard);
+        atualizar(id, cardName);
         setcardPokemon({edit: false});
     }
 
     const handleChange = (evt) => {
-        setCardName({[evt.target.name]: evt.target.value})
+        setCardName(evt.target.value)
     }
 
     const alterar = () => {

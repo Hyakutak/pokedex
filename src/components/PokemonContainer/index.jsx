@@ -14,28 +14,38 @@ function ContainerPokemon() {
         for(var i = 1; i < 50; i++) {
             endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`);
         }
-        var response = axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokemons(res))
+        axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) =>{
+           const pokemons = Array.from(res.map(pokemon =>{
+            const extract = ({name, id, sprites}) => ({name, id, sprites});
+            return extract(pokemon.data)
+           }))
+           setPokemons(pokemons);
+        } )
     }
-
+    
     const removeCard = (card) => {
-        setPokemons(pokemons => pokemons.filter(item => item.data.id !== card))
+        setPokemons(pokemons => pokemons.filter(item => item.id !== card))
     }
 
-    const atualizaCard = (idCard, cardName) => () => {
-        setPokemons(pokemons => pokemons.map((item) => {
-            if (item.data.id === idCard) {
-              return { ...item.data, name: cardName };
+    const atualizaCard = (idCard, cardName) => {
+        const att = pokemons.map((item) => {
+            if (item.id === idCard) {
+                const newItem = {...item};
+                newItem.name = cardName
+                return newItem;
             }
-        }))
+            return item
+        })
+        setPokemons(att)
     }
 
     const filterCards = (name) => {
         var filterPokemon = [];
-        if(name === "") {
+        if(!name) {
             getPokemons();
         }
         for(var i in pokemons) {
-            if(pokemons[i].data.name.includes(name)) {
+            if(pokemons[i].name.includes(name)) {
                 filterPokemon.push(pokemons[i]);
             }
         }
@@ -48,7 +58,7 @@ function ContainerPokemon() {
 
     const pokemon = pokemons.map(poke => (
         <div>
-            <PokemonCard key={poke.data.id} id={poke.data.id} name={poke.data.name} image={poke.data.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
+            <PokemonCard key={poke.id} id={poke.id} name={poke.name} image={poke.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
         </div>
     ));
     
