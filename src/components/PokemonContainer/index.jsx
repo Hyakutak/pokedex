@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState  } from 'react';
 import PokemonCard from '../PokemonCard/indes';
+import Navbar from '../Navabar/index';
 
 function ContainerPokemon() {
     const [pokemons, setPokemons] = useState([]);
@@ -20,15 +21,29 @@ function ContainerPokemon() {
         setPokemons(pokemons => pokemons.filter(item => item.data.id !== card))
     }
 
-    const atualizaCard = (id, card) => (event) => {
-        let newArr = pokemons.map((item, i) => {
-            if (id === i.data.id) {
-              return { ...pokemons, [card]: event.target.value };
-            } else {
-              return item;
+    const atualizaCard = (idCard, cardName) => () => {
+        setPokemons(pokemons => pokemons.map((item) => {
+            if (item.data.id === idCard) {
+              return { ...item.data, name: cardName };
             }
-        });
-        setPokemons(newArr);
+        }))
+    }
+
+    const filterCards = (name) => {
+        var filterPokemon = [];
+        if(name === "") {
+            getPokemons();
+        }
+        for(var i in pokemons) {
+            if(pokemons[i].data.name.includes(name)) {
+                filterPokemon.push(pokemons[i]);
+            }
+        }
+        setPokemons(filterPokemon);
+    }
+
+    const addCards = (name) => {
+        setPokemons(pokemons => [...pokemons, name])
     }
 
     const pokemon = pokemons.map(poke => (
@@ -40,6 +55,7 @@ function ContainerPokemon() {
 
     return (
         <div>
+            <Navbar filter={filterCards} addCard={addCards} />
             {pokemon}
             
         </div>

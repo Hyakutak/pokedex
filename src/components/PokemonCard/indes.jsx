@@ -12,7 +12,8 @@ function PokemonCard({ name, image, id, remover, atualizar } ) {
         setcardPokemon({edit: true})
     }
     
-    const atualizaCard = () => {
+    const atualizaCard = (evt) => {
+        evt.preventDefault();
         atualizar(id, cardName.nameCard);
         setcardPokemon({edit: false});
     }
@@ -26,7 +27,8 @@ function PokemonCard({ name, image, id, remover, atualizar } ) {
         if(cardPokemon.edit) {
             card = (
                 <form onSubmit={atualizaCard}>
-                    <input value={cardName.nameCard} name="nameCard" type="text" onChange={handleChange} /> 
+                    <input value={cardName.nameCard} name="nameCard" type="text" onChange={handleChange} />
+                    <input type="submit" value="Salvar" />
                 </form>
             )
         } else {
