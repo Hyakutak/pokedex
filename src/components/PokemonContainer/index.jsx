@@ -2,9 +2,17 @@ import axios from 'axios';
 import { useEffect, useState  } from 'react';
 import PokemonCard from '../PokemonCard/indes';
 import Navbar from '../Navabar/index';
+import AddPokemon from "./addPokemon";
+
+import { ContainerPoke,
+        Heading,
+        TitleHeading,
+        PokeContainer,
+        ShowMoreButton } from "./PokemonContainer.elements";
 
 function ContainerPokemon() {
     const [pokemons, setPokemons] = useState([]);
+    const [visible, setVisible] = useState(12);
     useEffect(() => {
         getPokemons();
     }, []);
@@ -56,19 +64,29 @@ function ContainerPokemon() {
         setPokemons(pokemons => [...pokemons, name])
     }
 
-    const pokemon = pokemons.map(poke => (
-        <div>
-            <PokemonCard key={poke.id} id={poke.id} name={poke.name} image={poke.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
-        </div>
+    const ShowMore = () => {
+        setVisible((value) => value + 8);
+    }
+
+    const pokemon = pokemons.slice(0, visible).map(poke => (
+        <PokemonCard key={poke.id} id={poke.id} name={poke.name} image={poke.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
     ));
     
 
     return (
-        <div>
-            <Navbar filter={filterCards} addCard={addCards} />
-            {pokemon}
+        <ContainerPoke>
+            <Navbar filter={filterCards} />
+            <Heading>
+                <TitleHeading>Resultado de busca</TitleHeading>
+                <AddPokemon addCard={addCards} />
+            </Heading>
+            <PokeContainer>
+                {pokemon}
+            </PokeContainer>
+            <ShowMoreButton onClick={ShowMore}>Veja Mais</ShowMoreButton>
             
-        </div>
+            
+        </ContainerPoke>
     );
 }
 
