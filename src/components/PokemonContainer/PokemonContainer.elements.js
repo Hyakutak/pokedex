@@ -7,7 +7,6 @@ export const SearchIcon = styled.img`
 `;
 
 export const ContainerPoke = styled.div`
-    
 `;
 
 export const Heading = styled.div`
@@ -47,7 +46,7 @@ export const ShowMoreButton = styled.button`
     color: #FFF;
     padding: 10px 20px;
     left: 50%;
-    position: absolute;
+    position: relative;
     transform: translateX(-50%);
     margin: 15px;
 `;

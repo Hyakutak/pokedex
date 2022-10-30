@@ -13,6 +13,8 @@ import { ContainerPoke,
 function ContainerPokemon() {
     const [pokemons, setPokemons] = useState([]);
     const [visible, setVisible] = useState(12);
+    const [filterPokemons, setFilterPokemons] = useState([]);
+    const [isFilter, setIsFilter] = useState(false);
     useEffect(() => {
         getPokemons();
     }, []);
@@ -39,7 +41,7 @@ function ContainerPokemon() {
         const att = pokemons.map((item) => {
             if (item.id === idCard) {
                 const newItem = {...item};
-                newItem.name = cardName
+                newItem.name = cardName.toLowerCase()
                 return newItem;
             }
             return item
@@ -50,14 +52,16 @@ function ContainerPokemon() {
     const filterCards = (name) => {
         var filterPokemon = [];
         if(!name) {
-            getPokemons();
+            setPokemons(pokemons);
+            setFilterPokemons([]);
         }
         for(var i in pokemons) {
-            if(pokemons[i].name.includes(name)) {
+            if(pokemons[i].name.includes(name.toLowerCase())) {
                 filterPokemon.push(pokemons[i]);
             }
         }
-        setPokemons(filterPokemon);
+        setFilterPokemons(filterPokemon);
+        setIsFilter(!name ? false : true);
     }
 
     const addCards = (name) => {
@@ -71,7 +75,13 @@ function ContainerPokemon() {
     const pokemon = pokemons.slice(0, visible).map(poke => (
         <PokemonCard key={poke.id} id={poke.id} name={poke.name} image={poke.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
     ));
+
+    const pokemonFilter = filterPokemons.slice(0, visible).map(poke => (
+        <PokemonCard key={poke.id} id={poke.id} name={poke.name} image={poke.sprites.front_shiny} remover={removeCard} atualizar={atualizaCard} />
+    ));
     
+    const VisibleButton = visible < pokemons.length;
+    const ButtonMais = <ShowMoreButton onClick={ShowMore}>Veja Mais</ShowMoreButton>;
 
     return (
         <ContainerPoke>
@@ -81,9 +91,9 @@ function ContainerPokemon() {
                 <AddPokemon addCard={addCards} />
             </Heading>
             <PokeContainer>
-                {pokemon}
+                {isFilter ? pokemonFilter : pokemon}
             </PokeContainer>
-            <ShowMoreButton onClick={ShowMore}>Veja Mais</ShowMoreButton>
+            {VisibleButton ? ButtonMais : false}
             
             
         </ContainerPoke>
