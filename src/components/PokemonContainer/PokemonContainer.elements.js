@@ -22,7 +22,6 @@ export const Heading = styled.div`
 
 export const TitleHeading = styled.h2`
     color: #5F1478;
-    font: normal normal normal 32px/40px Muli;
     margin: 0;
 `;
 

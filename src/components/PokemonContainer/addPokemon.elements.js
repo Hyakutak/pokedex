@@ -16,7 +16,6 @@ export const TitleCriar = styled.div`
 `;
 
 export const Title = styled.h3`
-    font: normal normal bold Muli;
     letter-spacing: 0px;
     color: #5F1478;
     opacity: 1;
@@ -49,7 +48,6 @@ export const LabelForm = styled.label`
     width: 100%;
     color: #454545;
     text-transform: uppercase;
-    font: normal normal bold 14px/18px Muli;
     margin-top: 20px;
 `;
 
