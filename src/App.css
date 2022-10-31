@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-h2, h3, input, button, div, img {
+h1, h2, h3, h4, h5, h6, input, button, div, img, span, p {
   font-family: 'MuliFont' !important;
 }
 

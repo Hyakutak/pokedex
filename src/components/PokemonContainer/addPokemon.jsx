@@ -23,7 +23,7 @@ export default function AddPokemon({ addCard }) {
 
     const handleChange = (evt) => {
         evt.preventDefault();
-        const obj = {...newCard, [evt.target.name]: evt.target.value};
+        const obj = {...newCard, [evt.target.name]: evt.target.value.toLowerCase()};
         setNewCard(obj);
     }
 
@@ -49,8 +49,6 @@ export default function AddPokemon({ addCard }) {
         }
         
         r.readAsDataURL(evt.target.files[0]);
-        
-        
     }
 
     const handleSubmit = (evt) => {
