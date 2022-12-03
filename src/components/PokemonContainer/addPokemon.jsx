@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import criar from '../../assets/icons/icone_criar.svg';
 import { AddPokemonButton, 
         TitleCriar,
         Title,
@@ -75,7 +76,7 @@ export default function AddPokemon({ addCard }) {
             <TitleCriar>
                 <ImageCriar 
                     component="img"
-                    src="/assets/icons/icone_criar.svg"
+                    src={criar}
                     id="image-poke" />
                 <Title>Criar card</Title>
             </TitleCriar>

@@ -1,6 +1,8 @@
 import { useEffect, useState  } from 'react';
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
+import trash from '../../assets/icons/Icon-trash.svg';
+import edit from '../../assets/icons/Icon-edit.svg';
 import { Card,
         CardMedia,
         CardContent,
@@ -74,13 +76,13 @@ function PokemonCard({ name, image, id, remover, atualizar } ) {
                         <ButtonAction onClick={handleOpen}>
                             <ImageButton 
                                 component="img"
-                                src="/assets/icons/Icon-trash.svg" />
+                                src={trash} />
                             Excluir
                         </ButtonAction>
                         <ButtonActionEdit onClick={alterarCard}>
                             <ImageButton 
                                 component="img"
-                                src="/assets/icons/Icon-edit.svg" />
+                                src={edit} />
                             Editar
                         </ButtonActionEdit>
                     </CardActions>
@@ -94,7 +96,7 @@ function PokemonCard({ name, image, id, remover, atualizar } ) {
                                 <CardImagem>
                                     <CardMediaModal
                                         component="img"
-                                        src="/assets/icons/Icon-trash.svg"
+                                        src={trash}
                                     />
                                 </CardImagem>
                                 <TypographyTitleModal >

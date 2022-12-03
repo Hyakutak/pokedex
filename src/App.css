@@ -8,5 +8,5 @@ h1, h2, h3, h4, h5, h6, input, button, div, img, span, p {
 
 @font-face {
   font-family: 'MuliFont';
-  src: local('MuliFont'), url(../public/assets/fonts/Muli.ttf) format('ttf');
+  src: local('MuliFont'), url(./assets//fonts/Muli.ttf) format('ttf');
 }

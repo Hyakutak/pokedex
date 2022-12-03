@@ -2,6 +2,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import logo from '../../assets/logo/logo.svg'
+import lupa from '../../assets/icons/lupa.png'
 //Style
 import { Search,
         SearchIconWrapper,
@@ -16,7 +18,7 @@ export default function Navbar({ filter }) {
             <Toolbar>
                 <Typography
                     component="img"
-                    src="/assets/logo/logo.svg"
+                    src={logo}
                 />
             </Toolbar>
         </AppBar>
@@ -29,7 +31,7 @@ export default function Navbar({ filter }) {
             <SearchIconWrapper>
                 <SearchIcon 
                 component="img"
-                src="/assets/icons/lupa.png" />
+                src={lupa} />
             </SearchIconWrapper>
         </Search>
     </TopBar>
